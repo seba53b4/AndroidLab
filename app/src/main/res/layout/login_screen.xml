@@ -49,41 +49,42 @@
 
     <Button
         android:id="@+id/login_button_id"
-        android:layout_width="276dp"
-        android:layout_height="57dp"
+        android:layout_width="281dp"
+        android:layout_height="59dp"
         android:text="@string/login_button"
         android:textSize="28sp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.913" />
+        app:layout_constraintTop_toBottomOf="@+id/welcome_sub_id"
+        app:layout_constraintVertical_bias="0.745"
+        app:strokeColor="@color/black"
+        app:strokeWidth="1dp" />
 
     <EditText
         android:id="@+id/user_id"
         android:layout_width="281dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="224dp"
         android:background="@drawable/border_input_top"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/login_button_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo_id"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.596" />
 
     <EditText
         android:id="@+id/input_password_id"
         android:layout_width="281dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="148dp"
         android:background="@drawable/border_input_bottom"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/login_button_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,36 +95,33 @@
         android:id="@+id/show_password_button"
         android:layout_width="30dp"
         android:layout_height="29dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.811"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74"
+        app:layout_constraintBottom_toBottomOf="@+id/input_password_id"
+        app:layout_constraintEnd_toEndOf="@+id/input_password_id"
+        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintStart_toStartOf="@+id/input_password_id"
+        app:layout_constraintTop_toBottomOf="@+id/user_id"
         app:srcCompat="@drawable/icons8_closed_eye_50" />
 
     <ImageView
         android:id="@+id/user_icon"
         android:layout_width="30dp"
         android:layout_height="29dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.207"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.663"
+        app:layout_constraintBottom_toBottomOf="@+id/user_id"
+        app:layout_constraintEnd_toEndOf="@+id/user_id"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="@+id/user_id"
+        app:layout_constraintTop_toTopOf="@+id/user_id"
         app:srcCompat="@drawable/icons8_user_48" />
 
     <ImageView
         android:id="@+id/pasw_icon"
         android:layout_width="30dp"
         android:layout_height="29dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.207"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74"
+        app:layout_constraintBottom_toBottomOf="@+id/input_password_id"
+        app:layout_constraintEnd_toEndOf="@+id/input_password_id"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="@+id/input_password_id"
+        app:layout_constraintTop_toBottomOf="@+id/user_id"
         app:srcCompat="@drawable/icons8_key_67" />
 
 
