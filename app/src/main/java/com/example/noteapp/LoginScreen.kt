@@ -2,6 +2,7 @@ package com.example.noteapp
 
 import android.content.Intent
 import android.app.AlertDialog
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
@@ -24,15 +25,7 @@ class LoginScreen : AppCompatActivity() {
         }
 
         binding.loginButtonId.setOnClickListener{
-
             signIn(binding.userId.text.toString(), binding.inputPasswordId.text.toString())
-            
-            val intent = Intent(this, NoteScreen::class.java)
-            startActivity(intent)
-            finish()
-
-
-            
         }
 
     }
@@ -42,8 +35,10 @@ class LoginScreen : AppCompatActivity() {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        //TODO: invocar al metodo que lleve a las notas
-                        Toast.makeText(this, "Login con éxito", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, NoteScreen::class.java)
+                        startActivity(intent)
+                        finish()
+
                     } else {
                         showDialog("Error de autenticacion", "Se ha producido un error de autenticación")
                     }

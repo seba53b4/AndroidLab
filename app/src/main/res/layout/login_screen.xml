@@ -69,7 +69,7 @@
         android:layout_height="57dp"
         android:background="@drawable/border_input_top"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/login_button_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
