@@ -3,4 +3,5 @@
     <string name="welcome_message">Hello again!</string>
     <string name="welcome_message_sub">Welcome back you\'ve be missed</string>
     <string name="login_button">Login</string>
+    <string name="app_preference_file_key">noteApp_UserLogin</string>
 </resources>
