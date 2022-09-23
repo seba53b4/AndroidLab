@@ -11,8 +11,8 @@ class SharedPreferencesService {
             AppCompatActivity.MODE_PRIVATE
         )
         val editor = sharedPreferences.edit()
-        editor.putBoolean(LOGGED_IN, true)
-        editor.putString(EMAIL, email)
+        editor.putBoolean(Constants.SharedPreferences.LOGGED_IN, true)
+        editor.putString(Constants.SharedPreferences.EMAIL, email)
         editor.apply()
     }
 
@@ -21,8 +21,8 @@ class SharedPreferencesService {
             context.getString(R.string.app_preference_file_key),
             Context.MODE_PRIVATE
         )
-        if (sharedPreferences.getBoolean(LOGGED_IN, false)) {
-            return sharedPreferences.getString(EMAIL, null)
+        if (sharedPreferences.getBoolean(Constants.SharedPreferences.LOGGED_IN, false)) {
+            return sharedPreferences.getString(Constants.SharedPreferences.EMAIL, null)
         }
         return null
     }

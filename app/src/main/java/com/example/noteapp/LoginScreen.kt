@@ -7,16 +7,10 @@ import android.os.Bundle
 import android.text.InputType
 import com.example.noteapp.databinding.LoginScreenBinding
 
-const val EMAIL = "EMAIL"
-const val LOGGED_IN = "LOGGED_IN"
-const val ACCEPT = "Aceptar"
-const val ERROR_AUTH_TITLE = "Error de autenticacion"
-const val ERROR_AUTH_MESSAGE = "Se ha producido un error de autenticación"
-
 class LoginScreen : AppCompatActivity() {
 
     private lateinit var binding: LoginScreenBinding
-    val sharedPref = SharedPreferencesService()
+    private val sharedPref = SharedPreferencesService()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +23,8 @@ class LoginScreen : AppCompatActivity() {
         }
 
         binding.showPasswordButton.setOnClickListener {
-            binding.inputPasswordId.inputType = if (binding.inputPasswordId.inputType === InputType.TYPE_TEXT_VARIATION_PASSWORD)  InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD else InputType.TYPE_TEXT_VARIATION_PASSWORD;
-            binding.showPasswordButton.setImageResource(if (binding.inputPasswordId.inputType === InputType.TYPE_TEXT_VARIATION_PASSWORD)  R.drawable.icons8_eye_64 else R.drawable.icons8_closed_eye_50)
+            binding.inputPasswordId.inputType = if (binding.inputPasswordId.inputType === InputType.TYPE_TEXT_VARIATION_PASSWORD) InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD else InputType.TYPE_TEXT_VARIATION_PASSWORD;
+            binding.showPasswordButton.setImageResource(if (binding.inputPasswordId.inputType === InputType.TYPE_TEXT_VARIATION_PASSWORD) R.drawable.icons8_eye_64 else R.drawable.icons8_closed_eye_50)
         }
 
         val firebaseService = FirebaseService()
@@ -50,14 +44,17 @@ class LoginScreen : AppCompatActivity() {
     }
 
     private fun signInFailure() {
-        showDialog(ERROR_AUTH_TITLE, ERROR_AUTH_MESSAGE)
+        showDialog(
+            getString(R.string.dialog_error_auth_title),
+            getString(R.string.dialog_error_auth_msg)
+        )
     }
 
-    fun showDialog(title: String, message: String) {
+    private fun showDialog(title: String, message: String) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle(title)
         builder.setMessage(message)
-        builder.setPositiveButton(ACCEPT, null)
+        builder.setPositiveButton(getString(R.string.dialog_accept), null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
