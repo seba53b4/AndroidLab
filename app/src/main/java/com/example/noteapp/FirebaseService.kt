@@ -5,6 +5,8 @@ import android.content.Context
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
@@ -43,15 +45,21 @@ class FirebaseService {
     }
 
     fun addNote(note: Note, success: () -> Unit, failure: () -> Unit) {
+        val db = FirebaseFirestore.getInstance()
+
+        val idNote = db.collection(Constants.DB.NOTES).document().id
+
         val noteMap = hashMapOf(
-            "emailUser" to note.emailUser,
-            "title" to note.title,
-            "body" to note.body,
-            "itemList" to note.itemList,
-            "date" to note.date,
-            "isMultiline" to note.isMultiline
+            Constants.DB.NOTE_ID to idNote,
+            Constants.DB.NOTE_EMAIL to note.emailUser,
+            Constants.DB.NOTE_TITLE to note.title,
+            Constants.DB.NOTE_BODY to note.body,
+            Constants.DB.NOTE_ITEM_LIST to note.itemList,
+            Constants.DB.NOTE_DATE to note.date,
+            Constants.DB.NOTE_IS_MULTILINE to note.isMultiline
         )
-        FirebaseFirestore.getInstance().collection(Constants.DB.NOTES).document(note.emailUser).set(noteMap)
+
+        db.collection(Constants.DB.NOTES).document(idNote).set(noteMap)
             .addOnSuccessListener {
                 success()
             }
@@ -60,12 +68,37 @@ class FirebaseService {
             }
     }
 
-    fun modifyNote() {
+    fun updateNote(note: Note, success: () -> Unit, failure: () -> Unit) {
+        val noteRef =
+            FirebaseFirestore.getInstance().collection(Constants.DB.NOTES).document(note.id)
+        noteRef.update(Constants.DB.NOTE_TITLE, note.title)
+        noteRef.update(Constants.DB.NOTE_BODY, note.body)
+        noteRef.update(Constants.DB.NOTE_ITEM_LIST, note.itemList)
+        noteRef.update(Constants.DB.NOTE_IS_MULTILINE, note.isMultiline)
+            .addOnSuccessListener {
+                success()
+            }
+            .addOnFailureListener {
+                failure()
+            }
     }
 
-    fun deleteNote() {
+    fun deleteNote(note: Note, success: () -> Unit, failure: () -> Unit) {
+        FirebaseFirestore.getInstance().collection(Constants.DB.NOTES).document(note.id).delete()
+            .addOnSuccessListener {
+                success()
+            }
+            .addOnFailureListener {
+                failure()
+            }
     }
 
+    fun deleteAllNotes(notes: MutableList<Note>) {
+        val db = FirebaseFirestore.getInstance()
+        notes.forEach{
+            db.collection(Constants.DB.NOTES).document(it.id).delete()
+        }
+    }
 
     fun getAllNotes(context: Context): MutableList<Note> {
 
@@ -74,24 +107,25 @@ class FirebaseService {
 
         var noteList = mutableListOf<Note>()
 
-        FirebaseFirestore.getInstance().collection(Constants.DB.NOTES).whereEqualTo("emailUser", userLogged)
+        FirebaseFirestore.getInstance().collection(Constants.DB.NOTES)
+            .whereEqualTo(Constants.DB.NOTE_EMAIL, userLogged)
             .get().addOnSuccessListener { notes ->
-            for (note in notes) {
-                var noteId = note.id
-                var noteEmail = note.getString("emailUser") ?: ""
-                var noteTitle = note.getString("title") ?: ""
-                var noteBody = note.getString("body") ?: ""
-                var noteItemList = note.get("itemList") as Array<String>
-                var date = note.get("date")
-                var isMultiline = note.getBoolean("isMultiline") ?: false
-                noteList.add(
-                    Note(
-                        noteId, noteEmail, noteTitle, noteBody, noteItemList,
-                        date as Timestamp, isMultiline
+                for (note in notes) {
+                    var noteId = note.getString(Constants.DB.NOTE_ID) ?: ""
+                    var noteEmail = note.getString(Constants.DB.NOTE_EMAIL) ?: ""
+                    var noteTitle = note.getString(Constants.DB.NOTE_TITLE) ?: ""
+                    var noteBody = note.getString(Constants.DB.NOTE_BODY) ?: ""
+                    var noteItemList = note.get(Constants.DB.NOTE_ITEM_LIST) as Array<String>
+                    var date = note.get(Constants.DB.NOTE_DATE) as Timestamp
+                    var isMultiline = note.getBoolean(Constants.DB.NOTE_IS_MULTILINE) ?: false
+                    noteList.add(
+                        Note(
+                            noteId, noteEmail, noteTitle, noteBody, noteItemList,
+                            date, isMultiline
+                        )
                     )
-                )
+                }
             }
-        }
         return noteList
     }
 
