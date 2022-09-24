@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NoteScreen">
+    tools:context=".NoteScreen"
+    android:id="@+id/note_screen_id">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_notes"
         android:layout_width="388dp"
         android:layout_height="637dp"
         android:layout_marginTop="92dp"

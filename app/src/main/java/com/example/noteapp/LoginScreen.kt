@@ -25,7 +25,10 @@ class LoginScreen : AppCompatActivity() {
         }
 
         binding.loginButtonId.setOnClickListener{
-            signIn(binding.userId.text.toString(), binding.inputPasswordId.text.toString())
+            //signIn(binding.userId.text.toString(), binding.inputPasswordId.text.toString())
+            val intent = Intent(this, NoteScreen::class.java)
+            startActivity(intent)
+            finish()
         }
 
     }
