@@ -91,9 +91,25 @@ class FirebaseService {
             }
     }
 
-    fun deleteAllNotes(notes: MutableList<Note>) {
+    fun deleteAllNotes(context: Context) {
+
+        //TODO: el userLogged se podria obtener desde el activity y pasar por parametro a esta funcion
+        val userLogged = SharedPreferencesService().getUserLogin(context)
+
         val db = FirebaseFirestore.getInstance()
-        notes.forEach{
+
+        db.collection(Constants.DB.NOTES)
+            .whereEqualTo(Constants.DB.NOTE_EMAIL, userLogged)
+            .get().addOnSuccessListener { notes ->
+                for (note in notes) {
+                    db.collection(Constants.DB.NOTES).document(note.id).delete()
+                }
+            }
+    }
+
+    fun deleteAllNotesByList(notes: MutableList<Note>) {
+        val db = FirebaseFirestore.getInstance()
+        notes.forEach {
             db.collection(Constants.DB.NOTES).document(it.id).delete()
         }
     }

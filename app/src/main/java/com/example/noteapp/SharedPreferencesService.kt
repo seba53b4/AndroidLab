@@ -2,10 +2,11 @@ package com.example.noteapp
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 
 class SharedPreferencesService {
 
-    fun setUserLoginTrue(email: String, context: Context) {
+    fun addUserLogin(email: String, context: Context) {
         val sharedPreferences = context.getSharedPreferences(
             context.getString(R.string.app_preference_file_key),
             AppCompatActivity.MODE_PRIVATE
@@ -25,5 +26,16 @@ class SharedPreferencesService {
             return sharedPreferences.getString(Constants.SharedPreferences.EMAIL, null)
         }
         return null
+    }
+
+    fun removeUserLogin(context: Context) {
+        val sharedPreferences = context.getSharedPreferences(
+            context.getString(R.string.app_preference_file_key),
+            Context.MODE_PRIVATE
+        )
+        sharedPreferences.edit() {
+            remove(Constants.SharedPreferences.LOGGED_IN)
+            remove(Constants.SharedPreferences.EMAIL)
+        }
     }
 }

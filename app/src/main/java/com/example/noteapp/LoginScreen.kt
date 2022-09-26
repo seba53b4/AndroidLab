@@ -37,7 +37,7 @@ class LoginScreen : AppCompatActivity() {
     }
 
     private fun signInSuccess(email: String) {
-        sharedPref.setUserLoginTrue(email, this@LoginScreen)
+        sharedPref.addUserLogin(email, this@LoginScreen)
         val intent = Intent(this, NoteScreen::class.java)
         startActivity(intent)
         finish()
