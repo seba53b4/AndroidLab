@@ -27,7 +27,7 @@ class NoteScreen : AppCompatActivity() {
         recyclerView = binding.recyclerviewNotes
 
         val notes = mutableListOf<Note>()
-        notes.add(Note("1","a@mail.com","Lista Super","Comprar pan", null, Timestamp.now(),false));
+        notes.add(Note("1","a@mail.com","Lista Super de cosas para ver si se rompe","Comprar pan", null, Timestamp.now(),false));
         notes.add(Note("1","a@mail.com","Lista Recetas","Comprar tacos", null, Timestamp.now(),false));
         notes.add(Note("1","a@mail.com","Lista Verduleria","Comprar lechuga", null, Timestamp.now(),false));
         notes.add(Note("1","a@mail.com","Lista Verduleria","Comprar lechuga", null, Timestamp.now(),false));

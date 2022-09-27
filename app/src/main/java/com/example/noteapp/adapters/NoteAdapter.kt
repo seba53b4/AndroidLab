@@ -8,13 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noteapp.Note
 import com.example.noteapp.R
+import com.example.noteapp.utils.getDateTime
 
 class NoteAdapter(private val list: List<Note>): RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     class NoteViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
         val title: TextView = itemView.findViewById(R.id.title_note)
-        val body: TextView = itemView.findViewById(R.id.body_note)
         val date : TextView = itemView.findViewById(R.id.date_note)
     }
 
@@ -26,8 +26,7 @@ class NoteAdapter(private val list: List<Note>): RecyclerView.Adapter<NoteAdapte
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val item = list[position]
         holder.title.text = item.title
-        holder.body.text = item.body
-        holder.date.text = item.date.toString()
+        holder.date.text = getDateTime(item.date)
     }
 
     override fun getItemCount(): Int {
