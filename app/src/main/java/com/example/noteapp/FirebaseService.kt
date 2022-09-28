@@ -2,11 +2,12 @@ package com.example.noteapp
 
 
 import android.content.Context
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
+import kotlinx.coroutines.tasks.await
 
 class FirebaseService {
 
@@ -91,40 +92,55 @@ class FirebaseService {
             }
     }
 
-    fun deleteAllNotes(notes: MutableList<Note>) {
-        val db = FirebaseFirestore.getInstance()
-        notes.forEach{
-            db.collection(Constants.DB.NOTES).document(it.id).delete()
-        }
-    }
-
-    fun getAllNotes(context: Context): MutableList<Note> {
+    fun deleteAllNotes(context: Context) {
 
         //TODO: el userLogged se podria obtener desde el activity y pasar por parametro a esta funcion
         val userLogged = SharedPreferencesService().getUserLogin(context)
 
-        var noteList = mutableListOf<Note>()
+        val db = FirebaseFirestore.getInstance()
 
-        FirebaseFirestore.getInstance().collection(Constants.DB.NOTES)
+        db.collection(Constants.DB.NOTES)
             .whereEqualTo(Constants.DB.NOTE_EMAIL, userLogged)
             .get().addOnSuccessListener { notes ->
                 for (note in notes) {
-                    var noteId = note.getString(Constants.DB.NOTE_ID) ?: ""
-                    var noteEmail = note.getString(Constants.DB.NOTE_EMAIL) ?: ""
-                    var noteTitle = note.getString(Constants.DB.NOTE_TITLE) ?: ""
-                    var noteBody = note.getString(Constants.DB.NOTE_BODY) ?: ""
-                    var noteItemList = note.get(Constants.DB.NOTE_ITEM_LIST) as Array<String>
-                    var date = note.get(Constants.DB.NOTE_DATE) as Timestamp
-                    var isMultiline = note.getBoolean(Constants.DB.NOTE_IS_MULTILINE) ?: false
-                    noteList.add(
-                        Note(
-                            noteId, noteEmail, noteTitle, noteBody, noteItemList,
-                            date, isMultiline
-                        )
-                    )
+                    db.collection(Constants.DB.NOTES).document(note.id).delete()
                 }
             }
-        return noteList
+    }
+
+    fun deleteAllNotesByList(notes: MutableList<Note>) {
+        val db = FirebaseFirestore.getInstance()
+        notes.forEach {
+            db.collection(Constants.DB.NOTES).document(it.id).delete()
+        }
+    }
+
+
+    suspend fun getAllNotes(context: Context): MutableList<Note> {
+        var noteList = mutableListOf<Note>()
+
+        return try {
+
+            //TODO: el userLogged se podria obtener desde el activity y pasar por parametro a esta funcion
+            val userLogged = SharedPreferencesService().getUserLogin(context)
+
+            FirebaseFirestore.getInstance().collection(Constants.DB.NOTES)
+                .whereEqualTo(Constants.DB.NOTE_EMAIL, userLogged)
+                .get().addOnSuccessListener { notes ->
+                    for (note in notes) {
+                        noteList.add(note.toObject(Note::class.java))
+                    }
+                }.await()
+
+            withContext(Dispatchers.Main) {
+                return@withContext noteList
+            }
+
+        } catch (e: Exception) {
+            withContext(Dispatchers.Main) {
+                return@withContext noteList
+            }
+        }
     }
 
 }

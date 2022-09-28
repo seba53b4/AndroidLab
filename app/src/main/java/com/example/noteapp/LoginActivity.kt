@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun signInSuccess(email: String) {
-        sharedPref.setUserLoginTrue(email, this@LoginActivity)
+        sharedPref.addUserLogin(email, this@LoginActivity)
         val intent = Intent(this, NoteActivity::class.java)
         startActivity(intent)
         finish()
