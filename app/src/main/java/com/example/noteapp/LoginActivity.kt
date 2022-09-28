@@ -17,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
         binding = LoginScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val userLogged = sharedPref.getUserLogin(this@LoginScreen)
+        val userLogged = sharedPref.getUserLogin(this@LoginActivity)
         if (!userLogged.isNullOrEmpty()) {
             signInSuccess(userLogged)
         }
@@ -37,8 +37,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun signInSuccess(email: String) {
-        sharedPref.setUserLoginTrue(email, this@LoginScreen)
-        val intent = Intent(this, NoteScreen::class.java)
+        sharedPref.setUserLoginTrue(email, this@LoginActivity)
+        val intent = Intent(this, NoteActivity::class.java)
         startActivity(intent)
         finish()
     }
