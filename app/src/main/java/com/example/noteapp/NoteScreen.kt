@@ -45,4 +45,5 @@ class NoteScreen : AppCompatActivity() {
 
 
     }
+
 }
