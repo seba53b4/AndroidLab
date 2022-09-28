@@ -7,4 +7,7 @@
     <string name="dialog_accept">Aceptar</string>
     <string name="dialog_error_auth_title">Error de autenticacion</string>
     <string name="dialog_error_auth_msg">Se ha producido un error de autenticación</string>
+    <string name="notes_screen">Notas</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

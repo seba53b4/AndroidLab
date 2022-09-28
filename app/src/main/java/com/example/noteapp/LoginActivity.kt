@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.text.InputType
 import com.example.noteapp.databinding.LoginScreenBinding
 
-class LoginScreen : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: LoginScreenBinding
     private val sharedPref = SharedPreferencesService()
@@ -17,7 +17,7 @@ class LoginScreen : AppCompatActivity() {
         binding = LoginScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val userLogged = sharedPref.getUserLogin(this@LoginScreen)
+        val userLogged = sharedPref.getUserLogin(this@LoginActivity)
         if (!userLogged.isNullOrEmpty()) {
             signInSuccess(userLogged)
         }
@@ -37,8 +37,8 @@ class LoginScreen : AppCompatActivity() {
     }
 
     private fun signInSuccess(email: String) {
-        sharedPref.addUserLogin(email, this@LoginScreen)
-        val intent = Intent(this, NoteScreen::class.java)
+        sharedPref.addUserLogin(email, this@LoginActivity)
+        val intent = Intent(this, NoteActivity::class.java)
         startActivity(intent)
         finish()
     }

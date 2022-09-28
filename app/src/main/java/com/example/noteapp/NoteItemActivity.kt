@@ -2,17 +2,19 @@ package com.example.noteapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.noteapp.databinding.ActivityNoteItemBinding
 import com.example.noteapp.databinding.ActivityNoteScreenBinding
-import com.example.noteapp.databinding.LoginScreenBinding
 
-class NoteScreen : AppCompatActivity() {
+class NoteItemActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityNoteScreenBinding
+    private lateinit var binding: ActivityNoteItemBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityNoteScreenBinding.inflate(layoutInflater)
+        binding = ActivityNoteItemBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        intent.extras?.getString("title").let { binding.textView.text = it }
 
 
     }

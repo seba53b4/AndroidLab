@@ -26,5 +26,3 @@ class Note: Serializable {
     constructor()
 
 }
-
-
