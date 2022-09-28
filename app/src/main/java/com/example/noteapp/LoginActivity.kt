@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.text.InputType
 import com.example.noteapp.databinding.LoginScreenBinding
 
-class LoginScreen : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: LoginScreenBinding
     private val sharedPref = SharedPreferencesService()

@@ -4,14 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NoteScreen">
+    tools:context=".NoteActivity"
+    android:id="@+id/note_screen_id">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="388dp"
-        android:layout_height="637dp"
-        android:layout_marginTop="92dp"
+        android:id="@+id/recyclerview_notes"
+        android:layout_width="384dp"
+        android:layout_height="643dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_note"
+        android:layout_width="57dp"
+        android:layout_height="60dp"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/purple_700"
+        android:contentDescription="button add"
+        android:src="@drawable/icons_cross"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.992" />
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="413dp"
+        android:layout_height="64dp"
+        android:background="@color/purple_700"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:title="@string/notes_screen" />
+
+    <ImageButton
+        android:id="@+id/logout_btn"
+        android:layout_width="39dp"
+        android:layout_height="46dp"
+        android:background="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="@+id/materialToolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toStartOf="@+id/materialToolbar"
+        app:layout_constraintTop_toTopOf="@+id/materialToolbar"
+        app:layout_constraintVertical_bias="0.388"
+        app:srcCompat="@drawable/icons8_logout_32" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
