@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NoteScreen"
+    tools:context=".NoteActivity"
     android:id="@+id/note_screen_id">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -38,7 +38,7 @@
         android:id="@+id/materialToolbar"
         android:layout_width="413dp"
         android:layout_height="64dp"
-        android:background="?attr/colorPrimary"
+        android:background="@color/purple_700"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,5 +48,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:title="@string/notes_screen" />
+
+    <ImageButton
+        android:id="@+id/logout_btn"
+        android:layout_width="39dp"
+        android:layout_height="46dp"
+        android:background="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="@+id/materialToolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toStartOf="@+id/materialToolbar"
+        app:layout_constraintTop_toTopOf="@+id/materialToolbar"
+        app:layout_constraintVertical_bias="0.388"
+        app:srcCompat="@drawable/icons8_logout_32" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

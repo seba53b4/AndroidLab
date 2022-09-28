@@ -1,10 +1,13 @@
 package com.example.noteapp
 
 
+import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +18,7 @@ import java.util.*
 import com.example.noteapp.R
 
 
-class NoteScreen : AppCompatActivity() {
+class NoteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNoteScreenBinding
     lateinit var recyclerView: RecyclerView
@@ -41,7 +44,20 @@ class NoteScreen : AppCompatActivity() {
 
         val manager =  GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         recyclerView.layoutManager = manager;
-        recyclerView.adapter = NoteAdapter(notes)
+        recyclerView.adapter = NoteAdapter(notes, object:NoteAdapter.OnClickListener{
+            override fun onClick(item: Note) {
+                val intent = Intent(applicationContext,NoteItemActivity::class.java)
+                intent.putExtra("title",item.title)
+                startActivity(intent)
+            }
+        })
+
+        binding.logoutBtn.setOnClickListener{
+            // desloguearse
+            val intent = Intent(applicationContext,LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
 
     }

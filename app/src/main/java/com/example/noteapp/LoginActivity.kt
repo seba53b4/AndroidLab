@@ -2,15 +2,13 @@ package com.example.noteapp
 
 import android.content.Intent
 import android.app.AlertDialog
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
-import android.widget.Toast
 import com.example.noteapp.databinding.LoginScreenBinding
 import com.google.firebase.auth.FirebaseAuth
 
-class LoginScreen : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: LoginScreenBinding
 
@@ -26,7 +24,7 @@ class LoginScreen : AppCompatActivity() {
 
         binding.loginButtonId.setOnClickListener{
             //signIn(binding.userId.text.toString(), binding.inputPasswordId.text.toString())
-            val intent = Intent(this, NoteScreen::class.java)
+            val intent = Intent(this, NoteActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -38,7 +36,7 @@ class LoginScreen : AppCompatActivity() {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        val intent = Intent(this, NoteScreen::class.java)
+                        val intent = Intent(this, NoteActivity::class.java)
                         startActivity(intent)
                         finish()
 

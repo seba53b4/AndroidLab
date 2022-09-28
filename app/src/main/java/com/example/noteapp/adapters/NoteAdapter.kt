@@ -10,10 +10,13 @@ import com.example.noteapp.Note
 import com.example.noteapp.R
 import com.example.noteapp.utils.getDateTime
 
-class NoteAdapter(private val list: List<Note>): RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
+class NoteAdapter(private val list: List<Note>, private val onClickEvent: OnClickListener): RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
+
+    interface OnClickListener{
+        fun onClick(item:Note){}
+    }
 
     class NoteViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-
         val title: TextView = itemView.findViewById(R.id.title_note)
         val date : TextView = itemView.findViewById(R.id.date_note)
     }
@@ -27,6 +30,9 @@ class NoteAdapter(private val list: List<Note>): RecyclerView.Adapter<NoteAdapte
         val item = list[position]
         holder.title.text = item.title
         holder.date.text = getDateTime(item.date)
+        holder.title.setOnClickListener{
+            onClickEvent.onClick(item)
+        }
     }
 
     override fun getItemCount(): Int {
