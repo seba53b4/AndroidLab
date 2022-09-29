@@ -43,6 +43,10 @@ class FirebaseService {
         Firebase.auth.signOut()
     }
 
+    fun deleteAllNotesAndSignOut(email: String) {
+        deleteAllNotes(email, ::signOut)
+    }
+
     fun addNote(note: Note, success: () -> Unit, failure: () -> Unit) {
         val db = FirebaseFirestore.getInstance()
 
@@ -94,10 +98,10 @@ class FirebaseService {
 
     fun deleteAllNotes(context: Context) {
         val userLogged = SharedPreferencesService().getUserLogin(context) ?: ""
-        deleteAllNotes(userLogged)
+        deleteAllNotes(userLogged, null)
     }
 
-    fun deleteAllNotes(userLogged: String) {
+    fun deleteAllNotes(userLogged: String, success: (() -> Unit)?) {
 
         val db = FirebaseFirestore.getInstance()
 
@@ -106,6 +110,9 @@ class FirebaseService {
             .get().addOnSuccessListener { notes ->
                 for (note in notes) {
                     db.collection(Constants.DB.NOTES).document(note.id).delete()
+                }
+                if (success != null) {
+                    success()
                 }
             }
     }

@@ -70,7 +70,7 @@ class NoteActivity : AppCompatActivity() {
     }
 
     private val confirmLogOut = { dialog: DialogInterface, _: Int ->
-        firebaseService.deleteAllNotes(userEmail)
+        firebaseService.deleteAllNotesAndSignOut(userEmail)
         sharedPref.removeUserLogin(this@NoteActivity)
         val intent = Intent(applicationContext,LoginActivity::class.java)
         startActivity(intent)
