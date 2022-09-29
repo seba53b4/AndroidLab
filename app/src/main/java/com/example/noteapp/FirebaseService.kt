@@ -93,9 +93,11 @@ class FirebaseService {
     }
 
     fun deleteAllNotes(context: Context) {
+        val userLogged = SharedPreferencesService().getUserLogin(context) ?: ""
+        deleteAllNotes(userLogged)
+    }
 
-        //TODO: el userLogged se podria obtener desde el activity y pasar por parametro a esta funcion
-        val userLogged = SharedPreferencesService().getUserLogin(context)
+    fun deleteAllNotes(userLogged: String) {
 
         val db = FirebaseFirestore.getInstance()
 
@@ -115,14 +117,15 @@ class FirebaseService {
         }
     }
 
-
     suspend fun getAllNotes(context: Context): MutableList<Note> {
+        val userLogged = SharedPreferencesService().getUserLogin(context) ?: ""
+        return getAllNotes(userLogged)
+    }
+
+    suspend fun getAllNotes(userLogged: String): MutableList<Note> {
         var noteList = mutableListOf<Note>()
 
         return try {
-
-            //TODO: el userLogged se podria obtener desde el activity y pasar por parametro a esta funcion
-            val userLogged = SharedPreferencesService().getUserLogin(context)
 
             FirebaseFirestore.getInstance().collection(Constants.DB.NOTES)
                 .whereEqualTo(Constants.DB.NOTE_EMAIL, userLogged)

@@ -5,8 +5,11 @@
     <string name="login_button">Login</string>
     <string name="app_preference_file_key">noteApp_UserLogin</string>
     <string name="dialog_accept">Aceptar</string>
+    <string name="dialog_cancel">Cancelar</string>
     <string name="dialog_error_auth_title">Error de autenticacion</string>
     <string name="dialog_error_auth_msg">Se ha producido un error de autenticación</string>
+    <string name="dialog_logout_title">¿Estás seguro que deseas salir?</string>
+    <string name="dialog_logout_msg">Si sales se borrarán todas tus notas</string>
     <string name="notes_screen">Notas</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
