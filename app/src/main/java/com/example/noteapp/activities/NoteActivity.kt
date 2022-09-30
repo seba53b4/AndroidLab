@@ -1,4 +1,4 @@
-package com.example.noteapp
+package com.example.noteapp.activities
 
 
 import android.app.AlertDialog
@@ -8,8 +8,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.noteapp.R
 import com.example.noteapp.adapters.NoteAdapter
 import com.example.noteapp.databinding.ActivityNoteScreenBinding
+import com.example.noteapp.models.Note
+import com.example.noteapp.services.FirebaseService
+import com.example.noteapp.services.SharedPreferencesService
 import com.google.firebase.Timestamp
 
 
@@ -46,7 +50,7 @@ class NoteActivity : AppCompatActivity() {
         recyclerView.layoutManager = manager;
         recyclerView.adapter = NoteAdapter(notes, object:NoteAdapter.OnClickListener{
             override fun onClick(item: Note) {
-                val intent = Intent(applicationContext,NoteItemActivity::class.java)
+                val intent = Intent(applicationContext, NoteItemActivity::class.java)
                 intent.putExtra("title",item.title)
                 startActivity(intent)
             }
@@ -72,7 +76,7 @@ class NoteActivity : AppCompatActivity() {
     private val confirmLogOut = { dialog: DialogInterface, _: Int ->
         firebaseService.deleteAllNotesAndSignOut(userEmail)
         sharedPref.removeUserLogin(this@NoteActivity)
-        val intent = Intent(applicationContext,LoginActivity::class.java)
+        val intent = Intent(applicationContext, LoginActivity::class.java)
         startActivity(intent)
         finish()
     }

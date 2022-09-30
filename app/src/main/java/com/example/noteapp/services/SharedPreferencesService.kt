@@ -1,8 +1,10 @@
-package com.example.noteapp
+package com.example.noteapp.services
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
+import com.example.noteapp.utils.Constants
+import com.example.noteapp.R
 
 class SharedPreferencesService {
 

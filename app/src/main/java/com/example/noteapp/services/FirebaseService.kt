@@ -1,7 +1,10 @@
-package com.example.noteapp
+package com.example.noteapp.services
 
 
 import android.content.Context
+import com.example.noteapp.utils.Constants
+import com.example.noteapp.models.Note
+import com.example.noteapp.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore

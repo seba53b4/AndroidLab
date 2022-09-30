@@ -1,4 +1,4 @@
-package com.example.noteapp
+package com.example.noteapp.models
 
 import com.google.firebase.Timestamp
 import java.io.Serializable

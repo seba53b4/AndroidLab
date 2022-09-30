@@ -1,11 +1,15 @@
-package com.example.noteapp
+package com.example.noteapp.activities
 
 import android.content.Intent
 import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
+import com.example.noteapp.R
 import com.example.noteapp.databinding.LoginScreenBinding
+import com.example.noteapp.models.User
+import com.example.noteapp.services.FirebaseService
+import com.example.noteapp.services.SharedPreferencesService
 
 class LoginActivity : AppCompatActivity() {
 
