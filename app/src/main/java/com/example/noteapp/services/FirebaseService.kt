@@ -80,6 +80,7 @@ class FirebaseService {
         noteRef.update(Constants.DB.NOTE_TITLE, note.title)
         noteRef.update(Constants.DB.NOTE_BODY, note.body)
         noteRef.update(Constants.DB.NOTE_ITEM_LIST, note.itemList)
+        noteRef.update(Constants.DB.NOTE_DATE, note.date)
         noteRef.update(Constants.DB.NOTE_IS_MULTILINE, note.isMultiline)
             .addOnSuccessListener {
                 success()
