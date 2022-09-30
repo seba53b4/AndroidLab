@@ -61,6 +61,11 @@ class NoteActivity : AppCompatActivity() {
             showDialog(getString(R.string.dialog_logout_title), getString(R.string.dialog_logout_msg))
         }
 
+        binding.fabAddNote.setOnClickListener{
+            val intent = Intent(applicationContext, NoteAddActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
     }
 

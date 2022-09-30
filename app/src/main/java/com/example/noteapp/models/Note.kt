@@ -9,11 +9,11 @@ class Note: Serializable {
     lateinit var emailUser: String
     lateinit var title: String
     lateinit var body: String
-    var itemList: Array<String>? = null
+    var itemList: List<String>? = null
     lateinit var date: Timestamp
     var isMultiline: Boolean = false
 
-    constructor(id: String, emailUser: String, title: String, body: String, itemList: Array<String>?, date: Timestamp, isMultiline: Boolean) {
+    constructor(id: String, emailUser: String, title: String, body: String, itemList: List<String>?, date: Timestamp, isMultiline: Boolean) {
         this.id = id
         this.emailUser = emailUser
         this.title = title
