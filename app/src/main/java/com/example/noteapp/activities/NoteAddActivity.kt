@@ -80,10 +80,8 @@ class NoteAddActivity : AppCompatActivity() {
     private fun getItemList(): List<String> {
         var itemList = mutableListOf<String>()
         binding.noteItems!!.allViews.forEach {
-            if (it is EditText) {
-                if(!it.text.isNullOrEmpty()) {
-                    itemList.add(it.text.toString())
-                }
+            if (it is EditText && !it.text.isNullOrEmpty()) {
+                itemList.add(it.text.toString())
             }
         }
         return itemList
