@@ -44,7 +44,11 @@ class NoteAddActivity : AppCompatActivity() {
         }
 
         binding.btnSaveNewNote.setOnClickListener {
-            firebaseService.addNote(createNote(), ::addNoteSuccess, ::addNoteFailure)
+            if (!noteEmpty()) firebaseService.addNote(
+                createNote(),
+                ::addNoteSuccess,
+                ::addNoteFailure
+            )
         }
 
         binding.btnAddItem.setOnClickListener {
