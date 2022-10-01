@@ -76,6 +76,7 @@
                     android:layout_centerVertical="true"
                     android:ems="10"
                     android:hint="Titulo"
+                    android:textStyle="bold"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,7 +96,8 @@
                     android:layout_centerVertical="false"
                     android:ems="10"
                     android:hint="Nota"
-                    android:inputType="textMultiLine" />
+                    android:inputType="textMultiLine"
+                    android:minLines="3"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
