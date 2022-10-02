@@ -1,6 +1,8 @@
 package com.example.noteapp.models
 
 import com.google.firebase.Timestamp
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.io.Serializable
 
 class Note: Serializable {

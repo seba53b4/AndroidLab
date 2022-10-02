@@ -15,6 +15,7 @@ import com.example.noteapp.models.Note
 import com.example.noteapp.services.FirebaseService
 import com.example.noteapp.services.SharedPreferencesService
 import com.google.firebase.Timestamp
+import com.google.gson.Gson
 
 
 class NoteActivity : AppCompatActivity() {
@@ -34,7 +35,7 @@ class NoteActivity : AppCompatActivity() {
         userEmail = sharedPref.getUserLogin(this@NoteActivity) ?: ""
 
         val notes = mutableListOf<Note>()
-        notes.add(Note("1","a@mail.com","Lista Super de cosas para ver si se rompe","Comprar pan", null, Timestamp.now(),false));
+        notes.add(Note("1","a@mail.com","Lista Super de cosas para ver si se rompe","Comprar pan", listOf("Hola1","Hola2","Hola3","Hola4"), Timestamp.now(),true));
         notes.add(Note("1","a@mail.com","Lista Recetas","Comprar tacos", null, Timestamp.now(),false));
         notes.add(Note("1","a@mail.com","Lista Verduleria","Comprar lechuga", null, Timestamp.now(),false));
         notes.add(Note("1","a@mail.com","Lista Verduleria","Comprar lechuga", null, Timestamp.now(),false));
@@ -51,7 +52,8 @@ class NoteActivity : AppCompatActivity() {
         recyclerView.adapter = NoteAdapter(notes, object:NoteAdapter.OnClickListener{
             override fun onClick(item: Note) {
                 val intent = Intent(applicationContext, NoteItemActivity::class.java)
-                intent.putExtra("title",item.title)
+                val gson = Gson()
+                intent.putExtra("note", gson.toJson(item))
                 startActivity(intent)
             }
         })
