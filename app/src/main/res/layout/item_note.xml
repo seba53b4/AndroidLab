@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal"
+    android:paddingHorizontal="10dp">
+
+    <EditText
+        android:id="@+id/editText_item"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="5"
+        android:inputType="text"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_weight="0.5"
+        android:background="@drawable/icons8_cross_mark_40"
+        android:onClick="onDelete" />
+
+</LinearLayout>
