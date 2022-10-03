@@ -54,7 +54,18 @@ class NoteItemActivity : AppCompatActivity() {
         binding.btnBackToNotes.setOnClickListener {
             backToNotes()
         }
+
+        binding.editButton.setOnClickListener {
+            val intent = Intent(applicationContext, NoteAddActivity::class.java)
+            val gson = Gson()
+            intent.putExtra("note", gson.toJson(note))
+            intent.putExtra("isEdit",true)
+            startActivity(intent)
+            finish()
+        }
     }
+
+
 
     private val confirmAdd = { dialog: DialogInterface, _: Int ->
         firebaseService.deleteNote(note,::deleteNoteSuccess,
@@ -105,6 +116,7 @@ class NoteItemActivity : AppCompatActivity() {
             null, null
         )
     }
+
     private fun setNote() {
         val jSON= intent.extras?.getString("note")
         val gson = Gson()

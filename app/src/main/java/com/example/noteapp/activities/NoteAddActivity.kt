@@ -10,12 +10,14 @@ import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.allViews
+import androidx.core.view.get
 import com.example.noteapp.R
 import com.example.noteapp.databinding.ActivityNoteAddBinding
 import com.example.noteapp.models.Note
 import com.example.noteapp.services.FirebaseService
 import com.example.noteapp.services.SharedPreferencesService
 import com.google.firebase.Timestamp
+import com.google.gson.Gson
 
 
 class NoteAddActivity : AppCompatActivity() {
@@ -24,6 +26,8 @@ class NoteAddActivity : AppCompatActivity() {
     private val sharedPref = SharedPreferencesService()
     private val firebaseService = FirebaseService()
     private lateinit var userEmail: String
+    private var isEdit: Boolean = false
+    private lateinit var note : Note
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +59,14 @@ class NoteAddActivity : AppCompatActivity() {
             addItem()
         }
 
+        isEdit = intent.extras?.getBoolean("isEdit") == true
+        if (isEdit) {
+            setNote()
+            binding.editTextTitle.setText(note.title)
+            binding.editTextBody.setText(note.body)
+            note.itemList?.let { addItemListOfNote(it) }
+        }
+
     }
 
     private fun addItem() {
@@ -64,6 +76,19 @@ class NoteAddActivity : AppCompatActivity() {
         binding.noteItems!!.addView(rowView, binding.noteItems!!.childCount)
     }
 
+    private fun addItemListOfNote( list: List<String>){
+        list.forEach{
+            addItem(it)
+        }
+    }
+
+    private fun addItem(item : String) {
+        val inflater =
+            getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val rowView: View = inflater.inflate(R.layout.item_note, null)
+        rowView.findViewById<EditText>(R.id.editText_item).setText(item)
+        binding.noteItems!!.addView(rowView, binding.noteItems!!.childCount)
+    }
     fun onDelete(view: View) {
         binding.noteItems!!.removeView(view.parent as View)
     }
@@ -134,6 +159,12 @@ class NoteAddActivity : AppCompatActivity() {
         val intent = Intent(applicationContext, NoteActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun setNote() {
+        val jSON= intent.extras?.getString("note")
+        val gson = Gson()
+        note = gson.fromJson(jSON,Note::class.java)
     }
 
 

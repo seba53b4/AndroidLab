@@ -78,6 +78,7 @@
                     android:layout_centerVertical="true"
                     android:ems="10"
                     android:hint="Titulo"
+                    android:fontFamily="@font/syne"
                     android:textStyle="bold"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -98,6 +99,7 @@
                     android:layout_centerVertical="false"
                     android:ems="10"
                     android:hint="Nota"
+                    android:fontFamily="@font/syne"
                     android:inputType="textMultiLine"
                     android:minLines="3"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -114,6 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="@string/note_add_item"
+                android:fontFamily="@font/syne"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

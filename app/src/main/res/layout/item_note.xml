@@ -10,6 +10,7 @@
         android:layout_height="40dp"
         android:layout_weight="5"
         android:inputType="text"
+        android:fontFamily="@font/syne"
         android:textSize="14sp" />
 
     <Button
