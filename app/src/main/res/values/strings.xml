@@ -21,4 +21,12 @@
     <string name="dialog_note_save_ok_msg">Eureka! la nota se guardó con éxito</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dialog_note_delete_ok_title">Eliminar nota</string>
+    <string name="dialog_note_delete_ok_msg">Eureka! la nota se eliminó con éxito</string>
+    <string name="dialog_note_delete_error_title">Error al intentar eliminar la nota</string>
+    <string name="dialog_note_delete_error_msg">Se ha producido un error al intentar eliminar la nota</string>
+    <string name="dialog_confirm_action_title">¿Estás seguro que deseas realizar esta acción?</string>
+    <string name="dialog_error_action_title">Error al intentar realizar esta acción</string>
+    <string name="dialog_note_delete_title">Eliminar nota</string>
+
 </resources>
