@@ -26,11 +26,6 @@ class LoginActivity : AppCompatActivity() {
             signInSuccess(userLogged)
         }
 
-        binding.showPasswordButton.setOnClickListener {
-            binding.inputPasswordId.inputType = if (binding.inputPasswordId.inputType === InputType.TYPE_TEXT_VARIATION_PASSWORD) InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD else InputType.TYPE_TEXT_VARIATION_PASSWORD;
-            binding.showPasswordButton.setImageResource(if (binding.inputPasswordId.inputType === InputType.TYPE_TEXT_VARIATION_PASSWORD) R.drawable.icons8_eye_64 else R.drawable.icons8_closed_eye_50)
-        }
-
         val firebaseService = FirebaseService()
 
         binding.loginButtonId.setOnClickListener {

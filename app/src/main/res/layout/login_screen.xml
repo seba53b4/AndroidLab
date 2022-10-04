@@ -8,14 +8,14 @@
 
     <ImageView
         android:id="@+id/logo_id"
-        android:layout_width="412dp"
-        android:layout_height="289dp"
+        android:layout_width="369dp"
+        android:layout_height="240dp"
+        android:src="@drawable/icons8_note_100"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.067"
         tools:src="@tools:sample/avatars" />
 
     <TextView
@@ -62,70 +62,54 @@
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcome_sub_id"
-        app:layout_constraintVertical_bias="0.745"
+        app:layout_constraintVertical_bias="0.801"
         app:strokeColor="@color/black"
         app:strokeWidth="1dp" />
 
-    <EditText
-        android:id="@+id/user_id"
-        android:layout_width="281dp"
-        android:layout_height="57dp"
-        android:background="@drawable/border_input_top"
-        android:ems="10"
-        android:inputType="textEmailAddress"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="284dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_sub_id"
+        app:placeholderText="Ingresar Email">
+
+        <EditText
+            android:id="@+id/user_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border_input_top"
+            android:ems="10"
+            android:inputType="textEmailAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="284dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toTopOf="@+id/login_button_id"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_id"
-        app:layout_constraintVertical_bias="0.596" />
+        app:passwordToggleEnabled="true"
+        app:placeholderText="Ingresar password">
 
-    <EditText
-        android:id="@+id/input_password_id"
-        android:layout_width="281dp"
-        android:layout_height="57dp"
-        android:background="@drawable/border_input_bottom"
-        android:ems="10"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/login_button_id"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_id"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/show_password_button"
-        android:layout_width="30dp"
-        android:layout_height="29dp"
-        app:layout_constraintBottom_toBottomOf="@+id/input_password_id"
-        app:layout_constraintEnd_toEndOf="@+id/input_password_id"
-        app:layout_constraintHorizontal_bias="0.96"
-        app:layout_constraintStart_toStartOf="@+id/input_password_id"
-        app:layout_constraintTop_toBottomOf="@+id/user_id"
-        app:srcCompat="@drawable/icons8_closed_eye_50" />
-
-    <ImageView
-        android:id="@+id/user_icon"
-        android:layout_width="30dp"
-        android:layout_height="29dp"
-        app:layout_constraintBottom_toBottomOf="@+id/user_id"
-        app:layout_constraintEnd_toEndOf="@+id/user_id"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="@+id/user_id"
-        app:layout_constraintTop_toTopOf="@+id/user_id"
-        app:srcCompat="@drawable/icons8_user_48" />
-
-    <ImageView
-        android:id="@+id/pasw_icon"
-        android:layout_width="30dp"
-        android:layout_height="29dp"
-        app:layout_constraintBottom_toBottomOf="@+id/input_password_id"
-        app:layout_constraintEnd_toEndOf="@+id/input_password_id"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintStart_toStartOf="@+id/input_password_id"
-        app:layout_constraintTop_toBottomOf="@+id/user_id"
-        app:srcCompat="@drawable/icons8_key_67" />
+        <EditText
+            android:id="@+id/input_password_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border_input_bottom"
+            android:ems="10"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/login_button_id"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.515"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_id"
+            app:layout_constraintVertical_bias="0.0" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
