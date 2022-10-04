@@ -36,6 +36,8 @@ class NoteAddActivity : AppCompatActivity() {
 
         userEmail = sharedPref.getUserLogin(this@NoteAddActivity) ?: ""
 
+
+
         binding.btnBackToNotes.setOnClickListener {
             if (noteEmpty()) {
                 backToNotes()
@@ -53,9 +55,10 @@ class NoteAddActivity : AppCompatActivity() {
                 if (isEdit) {
                     var noteCreated = createNote()
                     noteCreated.id = note.id
+                    note = noteCreated
                     firebaseService.updateNote(
                         noteCreated,
-                        ::addNoteSuccess,
+                        ::editNoteSuccess,
                         ::addNoteFailure)
                 } else {
                     firebaseService.addNote(
@@ -77,6 +80,7 @@ class NoteAddActivity : AppCompatActivity() {
             binding.editTextTitle.setText(note.title)
             binding.editTextBody.setText(note.body)
             note.itemList?.let { addItemListOfNote(it) }
+            binding.materialToolbar.title = "Editar Nota"
         }
 
     }
@@ -151,6 +155,18 @@ class NoteAddActivity : AppCompatActivity() {
         dialog.cancel()
     }
 
+    private fun editNoteSuccess(){
+        showDialog(
+            getString(R.string.dialog_note_save_ok_title),
+            getString(R.string.dialog_note_save_ok_msg),
+            confirmEdit, null
+        )
+    }
+
+    private val confirmEdit = { dialog: DialogInterface, _: Int ->
+        backToNoteEdited()
+    }
+
     private fun addNoteSuccess() {
         showDialog(
             getString(R.string.dialog_note_save_ok_title),
@@ -165,6 +181,14 @@ class NoteAddActivity : AppCompatActivity() {
             getString(R.string.dialog_note_save_error_msg),
             null, null
         )
+    }
+
+    private fun backToNoteEdited() {
+        val intent = Intent(applicationContext, NoteItemActivity::class.java)
+        val gson = Gson()
+        intent.putExtra("note", gson.toJson(note))
+        startActivity(intent)
+        finish()
     }
 
     private fun backToNotes() {

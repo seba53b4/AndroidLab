@@ -8,7 +8,7 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/note_toolbar"
-        android:layout_width="413dp"
+        android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="@color/purple_700"
         android:minHeight="?attr/actionBarSize"
@@ -22,32 +22,61 @@
         app:title="Nota"
         app:titleCentered="true"/>
 
-    <TextView
-        android:id="@+id/title_textView"
-        android:layout_width="380dp"
-        android:layout_height="48dp"
-        android:text="Title"
-        android:fontFamily="@font/syne"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_below="@+id/note_toolbar"
+        android:background="@drawable/border_note_items"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@+id/date_textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.117" />
+        app:layout_constraintTop_toBottomOf="@+id/note_toolbar">
 
-    <TextView
-        android:id="@+id/description_textView"
-        android:layout_width="380dp"
-        android:layout_height="156dp"
-        android:fontFamily="@font/syne"
-        android:scrollbars="vertical"
-        android:text="Description"
-        app:layout_constraintBottom_toBottomOf="parent"
+        <TextView
+            android:id="@+id/title_textView"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:fontFamily="@font/syne"
+            android:text="Title"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+    </HorizontalScrollView>
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="383dp"
+        android:layout_height="237dp"
+        android:background="@drawable/border_note_items"
+        app:layout_constraintBottom_toTopOf="@+id/list_item_recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/note_toolbar"
-        app:layout_constraintVertical_bias="0.254" />
+        app:layout_constraintTop_toBottomOf="@+id/date_textView">
+
+        <TextView
+            android:id="@+id/description_textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:fontFamily="@font/syne"
+            android:scrollbars="vertical"
+            android:text="Description"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/note_toolbar"
+            app:layout_constraintVertical_bias="0.254" />
+    </ScrollView>
 
     <ImageButton
         android:id="@+id/btn_back_to_notes"
@@ -57,36 +86,34 @@
         android:background="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="@+id/note_toolbar"
         app:layout_constraintEnd_toEndOf="@+id/note_toolbar"
-        app:layout_constraintHorizontal_bias="0.018"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/note_toolbar"
-        app:layout_constraintVertical_bias="0.388"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/icons8_back_32" />
 
     <TextView
         android:id="@+id/date_textView"
-        android:layout_width="380dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="20dp"
-        android:text="Date"
+        android:layout_width="336dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="92dp"
         android:fontFamily="@font/syne"
-        app:layout_constraintBottom_toTopOf="@+id/description_textView"
+        android:text="Date"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_textView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/note_toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_item_recyclerView"
-        android:layout_width="380dp"
-        android:layout_height="352dp"
+        android:layout_width="386dp"
+        android:layout_height="286dp"
+        android:background="@drawable/border_note_items"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_textView"
-        app:layout_constraintVertical_bias="0.448" />
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/edit_button"
@@ -95,24 +122,24 @@
         android:background="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="@+id/note_toolbar"
         app:layout_constraintEnd_toEndOf="@+id/note_toolbar"
-        app:layout_constraintHorizontal_bias="0.831"
+        app:layout_constraintHorizontal_bias="0.843"
         app:layout_constraintStart_toStartOf="@+id/note_toolbar"
         app:layout_constraintTop_toTopOf="@+id/note_toolbar"
-        app:layout_constraintVertical_bias="0.523"
+        app:layout_constraintVertical_bias="0.583"
         app:srcCompat="@drawable/icons8_edit_32" />
 
     <ImageButton
         android:id="@+id/delete_button"
-        android:layout_width="49dp"
-        android:layout_height="51dp"
+        android:layout_width="43dp"
+        android:layout_height="41dp"
         android:layout_marginTop="4dp"
         android:background="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="@+id/note_toolbar"
         app:layout_constraintEnd_toEndOf="@+id/note_toolbar"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.266"
         app:layout_constraintStart_toEndOf="@+id/edit_button"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.444"
+        app:layout_constraintVertical_bias="0.631"
         app:srcCompat="@drawable/icons8_basura" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
