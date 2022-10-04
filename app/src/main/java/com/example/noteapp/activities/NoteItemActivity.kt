@@ -38,7 +38,7 @@ class NoteItemActivity : AppCompatActivity() {
         binding.descriptionTextView.text = note.body
         binding.dateTextView.text = getDateTime(note.date)
 
-        if (note.isMultiline) {
+        if (!note.itemList?.isEmpty()!!) {
             val manager = GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
             recyclerView.layoutManager = manager;
             recyclerView.adapter = ItemListAdapter(note.itemList!!)

@@ -48,11 +48,23 @@ class NoteAddActivity : AppCompatActivity() {
         }
 
         binding.btnSaveNewNote.setOnClickListener {
-            if (!noteEmpty()) firebaseService.addNote(
-                createNote(),
-                ::addNoteSuccess,
-                ::addNoteFailure
-            )
+
+            if (!noteEmpty()) {
+                if (isEdit) {
+                    var noteCreated = createNote()
+                    noteCreated.id = note.id
+                    firebaseService.updateNote(
+                        noteCreated,
+                        ::addNoteSuccess,
+                        ::addNoteFailure)
+                } else {
+                    firebaseService.addNote(
+                        createNote(),
+                        ::addNoteSuccess,
+                        ::addNoteFailure
+                    )
+                }
+            }
         }
 
         binding.btnAddItem.setOnClickListener {

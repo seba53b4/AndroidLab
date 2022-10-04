@@ -41,6 +41,9 @@ class FirebaseService {
         }
     }
 
+    fun deleteUser() {
+            FirebaseAuth.getInstance().currentUser?.delete()
+    }
 
     fun signOut() {
         Firebase.auth.signOut()

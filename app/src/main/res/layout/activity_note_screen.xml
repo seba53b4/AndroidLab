@@ -35,8 +35,8 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar"
-        android:layout_width="413dp"
-        android:layout_height="64dp"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
         android:background="@color/purple_700"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -46,7 +46,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:title="@string/notes_screen" />
+        app:title="@string/notes_screen"
+        app:titleCentered="true" />
 
     <ImageButton
         android:id="@+id/logout_btn"
@@ -55,10 +56,23 @@
         android:background="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="@+id/materialToolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintHorizontal_bias="0.981"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/materialToolbar"
+        app:layout_constraintVertical_bias="0.411"
+        app:srcCompat="@drawable/icons8_logout_32" />
+
+    <ImageButton
+        android:id="@+id/garbage_button"
+        android:layout_width="44dp"
+        android:layout_height="45dp"
+        android:background="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="@+id/materialToolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="@+id/materialToolbar"
         app:layout_constraintTop_toTopOf="@+id/materialToolbar"
-        app:layout_constraintVertical_bias="0.388"
-        app:srcCompat="@drawable/icons8_logout_32" />
+        app:layout_constraintVertical_bias="0.444"
+        app:srcCompat="@drawable/icons8_garbage2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

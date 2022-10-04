@@ -8,8 +8,8 @@
     <string name="dialog_cancel">Cancelar</string>
     <string name="dialog_error_auth_title">Error de autenticacion</string>
     <string name="dialog_error_auth_msg">Se ha producido un error de autenticación</string>
-    <string name="dialog_logout_title">¿Estás seguro que deseas salir?</string>
-    <string name="dialog_logout_msg">Si sales se borrarán todas tus notas</string>
+    <string name="dialog_logout_title">Estas por salir de la aplicación</string>
+    <string name="dialog_logout_msg">¿Estás seguro que lo desea?</string>
     <string name="dialog_note_back_title">Estás a punto de salir de esta nota...</string>
     <string name="dialog_note_back_msg">Si sales se perderán todos los cambios</string>
     <string name="notes_screen">Notas</string>
@@ -28,5 +28,7 @@
     <string name="dialog_confirm_action_title">¿Estás seguro que deseas realizar esta acción?</string>
     <string name="dialog_error_action_title">Error al intentar realizar esta acción</string>
     <string name="dialog_note_delete_title">Eliminar nota</string>
+    <string name="dialog_delete_account_title">¿Estás seguro que deseas realizar esta acción?</string>
+    <string name="dialog_delete_account_msg">Si confirmas se borrarán todas sus notas y su cuenta</string>
 
 </resources>
